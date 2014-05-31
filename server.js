@@ -3,12 +3,11 @@
 var express = require('express');
 var fs      = require('fs');
 
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
-//var configDB = require('./config/database.js');
-var settings = require('./config/settings');
+var configDB = require('./config/database.js');
 
 
 /**
@@ -135,10 +134,9 @@ var SampleApp = function() {
         self.app.use(passport.session()); // persistent login sessions
         self.app.use(flash()); // use connect-flash for flash messages stored in session
 
-        //mongoose.connect(configDB.url); // connect to our database
+        mongoose.connect(configDB.url); // connect to our database
 
-        //require('./config/passport')(passport); 
-        require('./config/database')(settings.connection_string);
+        //require('./config/passport')(passport);
         require('./app/routes.js')(self.app, passport);
     };
 
