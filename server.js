@@ -127,6 +127,7 @@ var SampleApp = function() {
         self.app.use(express.bodyParser()); // get information from html forms
 
         self.app.set('view engine', 'ejs'); // set up ejs for templating
+        self.app.use(express.static(__dirname + '/public'));
 
         // required for passport
         self.app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
