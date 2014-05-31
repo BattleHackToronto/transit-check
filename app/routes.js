@@ -1,11 +1,19 @@
+var User = require('./models/user');
+
 module.exports = function(app, passport) {
 
 	// =====================================
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-		
-		res.render('landingpage.ejs'); // load the index.ejs file
+		var newUser = new User({id : 1, phone : 416, email : "ayushbhagat@", name : "Ayush"});
+		newUser.save(function(err, newUser) {
+	      if (err) {
+	        res.send(err);
+	      } else {
+	      }
+	   	});
+		res.render('landingpage.ejs');
 	});
 
 	// =====================================
