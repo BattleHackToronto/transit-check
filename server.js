@@ -3,6 +3,13 @@
 var express = require('express');
 var fs      = require('fs');
 
+//var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+
+//var configDB = require('./config/database.js');
+var settings = require('./config/settings');
+
 
 /**
  *  Define the sample application.
@@ -92,7 +99,7 @@ var SampleApp = function() {
     /**
      *  Create the routing table entries + handlers for the application.
      */
-    self.createRoutes = function() {
+    /*self.createRoutes = function() {
         self.routes = { };
 
         self.routes['/asciimo'] = function(req, res) {
@@ -104,7 +111,7 @@ var SampleApp = function() {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
         };
-    };
+    };*/
 
 
     /**
@@ -112,13 +119,27 @@ var SampleApp = function() {
      *  the handlers.
      */
     self.initializeServer = function() {
-        self.createRoutes();
-        self.app = express.createServer();
+        //self.createRoutes();
+        self.app = express();
 
-        //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
-        }
+        // set up our express application
+        self.app.use(express.logger('dev')); // log every request to the console
+        self.app.use(express.cookieParser()); // read cookies (needed for auth)
+        self.app.use(express.bodyParser()); // get information from html forms
+
+        self.app.set('view engine', 'ejs'); // set up ejs for templating
+
+        // required for passport
+        self.app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+        self.app.use(passport.initialize());
+        self.app.use(passport.session()); // persistent login sessions
+        self.app.use(flash()); // use connect-flash for flash messages stored in session
+
+        //mongoose.connect(configDB.url); // connect to our database
+
+        //require('./config/passport')(passport); 
+        require('./config/database')(settings.connection_string);
+        require('./app/routes.js')(self.app, passport);
     };
 
 
@@ -127,7 +148,7 @@ var SampleApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
-        self.populateCache();
+        //self.populateCache();
         self.setupTerminationHandlers();
 
         // Create the express server and routes.
