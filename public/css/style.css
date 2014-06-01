@@ -517,3 +517,10 @@ csmall2 {
 	background-image: url("images/mainbg.jpg");
 	color: white;
 }
+
+.team img
+{
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+}
