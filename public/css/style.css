@@ -495,10 +495,25 @@ csmall2 {
 
 }
 
+.phoneNumber
+{
+	display: inline;
+}
+
 #loginBox button
 {
 	background-color: #08C3CA;
     border: 1px solid darkblue;
+}
 
+#loginBox button:hover
+{
+	background-color: darkgrey;
+    border: 1px solid darkblue;
+}
 
+#signupbg
+{
+	background-image: url("images/mainbg.jpg");
+	color: white;
 }
