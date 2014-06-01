@@ -13,7 +13,6 @@ module.exports = function(app, passport) {
 		res.render('about.ejs');
 	});
 
-
 	app.get('/notify', function(req, res) {
 		res.render('notify.js');
 	});
