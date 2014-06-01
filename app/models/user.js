@@ -11,25 +11,6 @@ var userSchema = mongoose.Schema({
     likes : Number,
     dislikes : Number,
     userBuses : Array,
-    
-    /*
-    {
-    favBuses : 
-    {
-	    busName : String,
-	    stop : Array of {
-	    			stopName : String,
-	    			timeWeekly : Array,  //of strings
-	    			timeSat : Array,  //of strings
-					timeSun : Array  //of strings
-	    		}
-    }}*/
-	   
-	    
-	    	
-	    	
-	    
-    
 });
 
 // methods ======================
