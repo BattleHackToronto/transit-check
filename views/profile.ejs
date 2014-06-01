@@ -17,9 +17,52 @@
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
+	<script>
+		$(function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+	</script>
+
+
+
+
+
+
+
+
+	
 </head>
 <body>
 <% include navbar %>
@@ -47,6 +90,13 @@
 					</p>
 					<% } %>
 			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
 		</div>
 
 	</div>
