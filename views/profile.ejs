@@ -105,6 +105,103 @@
 			"145  Downtown / Humber Bay Express "
 	    ];
 
+		var northTags = [
+			"5  Avenue Rd",
+			"6  Bay",
+			"7  Bathurst",
+			"8  Broadview",
+			"9  Bellamy",
+			"11  Bayview",
+			"16  McCowan",
+			"17  Birchmount",
+			"21  Brimley",
+			"22  Coxwell",
+			"23  Dawes",
+			"24  Victoria Park",
+			"25  Don Mills",
+			"29  Dufferin",
+			"31  Greenwood",
+			"33  Forest Hill",
+			"35  Jane",
+			"37  Islington",
+			"41  Keele",
+			"43  Kennedy",
+			"44  Kipling South",
+			"45  Kipling",
+			"46  Martin Grove",
+			"47  Lansdowne",
+			"51  Leslie",
+			"55  Warren Park",
+			"56  Leaside",
+			"57  Midland",
+			"61  Avenue Rd North",
+			"63  Ossington",
+			"64  Main",
+			"65  Parliament",
+			"66  Prince Edward",
+			"67  Pharmacy",
+			"68  Warden",
+			"69  Warden South",
+			"71  Runnymede",
+			"72  Pape",
+			"73  Royal York",
+			"74  Mt Pleasant",
+			"75  Sherbourne",
+			"76  Royal York South",
+			"77  Swansea",
+			"79  Scarlett Rd",
+			"81  Thorncliffe Park",
+			"83  Jones",
+			"89  Weston",
+			"90  Vaughan",
+			"91  Woodbine",
+			"92  Woodbine South",
+			"97  Yonge",
+			"99  Arrow Rd",
+			"100  Flemingdon Park",
+			"102  Markham Rd",
+			"103  Mt Pleasant North",
+			"104  Faywood",
+			"105  Dufferin North",
+			"107  Keele North",
+			"109  Ranee",
+			"110  Islington South",
+			"111  East Mall",
+			"112  West Mall",
+			"117  Alness",
+			"123  Shorncliffe",
+			"126  Christie",
+			"129  McCowan North",
+			"130  Middlefield",
+			"133  Neilson",
+			"134  Progress",
+			"160  Bathurst North",
+			"167  Pharmacy North",
+			"168  Symington",
+			"171  Mt Dennis",
+			"191  Highway 27 Rocket",
+			"192  Airport Rocket",
+			"193  Exhibition Rocket",
+			"195  Jane Rocket",
+			"224  Victoria Park North",
+			"302  Danforth Rd - McCowan",
+			"303  Don Mills",
+			"310  Bathurst",
+			"311  Islington",
+			"313  Jane",
+			"316  Ossington",
+			"320  Yonge",
+			"324  Victoria Park",
+			"329  Dufferin",
+			"400  Lawrence Manor",
+			"402  Parkdale",
+			"403  South Don Mills",
+			"407  Toronto Rehab Cardiac Centre",
+			"141  Downtown / Mt Pleasant Express",
+			"142  Downtown / Avenue Rd Express",
+			"144  Downtown / Don Valley Express",
+
+		];
 	    $( "#tags" ).autocomplete({
 	      source: eastTags
 	    });
@@ -143,9 +240,12 @@
 
 		<div class="col-sm-6">
 			<div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
-</div>
+				<form action="/submitBuses" method="post">
+					<label for="tags">Tags: </label>
+  					<input id="tags">
+  					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
 		</div>
 
 	</div>

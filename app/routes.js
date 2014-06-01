@@ -40,7 +40,9 @@ module.exports = function(app, passport) {
 	}));
 
 	app.post('/submitBuses', isLoggedIn, function(req, res){
-				
+		User.findByIdAndUpdate(req.user._id).exec(function(){
+
+		});		
 	});
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
