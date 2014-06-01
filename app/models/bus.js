@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Stop = require('stop');
+var Stop = require('./stop');
 
 var busSchema = mongoose.Schema({
 	num : String,
