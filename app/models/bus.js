@@ -9,8 +9,8 @@ var busSchema = mongoose.Schema({
 
 module.exports = mongoose.model('Bus', busSchema);
 
-/*
-var fs = require('fs'), filename = "Test.txt";
+
+/*var fs = require('fs'), filename = "Test.txt";
 fs.readFile(filename, 'utf8', function(err, data) {
   if (err) throw err;
   console.log('OK: ' + filename);
