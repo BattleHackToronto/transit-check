@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/notify', function(req, res) {
-		res.render('notify.js');
+		res.render('notify.ejs');
 	});
 
 	// =====================================
