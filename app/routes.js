@@ -1,5 +1,5 @@
 var User = require('./models/user');
-var Data = require('./data');
+var Data = require('./models/data');
 var fs = require('fs'), filename = "../Test.txt";
 
 
@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 
 
 
-		/*fs.readFile(filename, 'utf8', function(err, data) {
+/*		fs.readFile(filename, 'utf8', function(err, data) {
   if (err) throw err;
   console.log('OK: ' + filename);
 
@@ -70,14 +70,14 @@ module.exports = function(app, passport) {
       for (var h=1; h < timesSun[u].length; h++) {
         timeSunArray.add(timesSun[u][h]);
       }
-      Data.bus = {busName : name, busDir : dir, stops = [{"stopName" : curStopName, "timesWeekly" : timeWeeklyArray, "timesSat" : timeSatArray, "timesSun" : timesSunArray}]};
+      Data.bus = {busName : name, busDir : dir, stops : [{"stopName" : curStopName, "timesWeekly" : timeWeeklyArray, "timesSat" : timeSatArray, "timesSun" : timesSunArray}]};
       Data.save();
     }
   }
 
 
-});*/
-
+});
+*/
 
 
 
