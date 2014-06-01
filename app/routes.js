@@ -13,8 +13,8 @@ module.exports = function(app, passport) {
 		res.render('about.ejs');
 	});
 
-	app.get('/notify', function(req, res){
-		res.render('notifyForm.ejs');
+	app.get('/notify', function(req, res) {
+		res.render('notify.ejs');
 	});
 
 	// =====================================
@@ -66,8 +66,6 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 };
-
-
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
