@@ -39,9 +39,9 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
-	/*app.post('/submitBuses', isLoggedIn, function(req, res){
-			
-	});*/
+	app.post('/submitBuses', isLoggedIn, function(req, res){
+				
+	});
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
 			user : req.user, // get the user out of session and pass to template
