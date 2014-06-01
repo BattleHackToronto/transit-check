@@ -9,6 +9,9 @@ module.exports = function(app, passport) {
 		res.render('landingpage.ejs');
 	});
 
+	app.get('/about', function(req,res){
+		res.render('about.ejs');
+	});
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
