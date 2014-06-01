@@ -9,7 +9,6 @@ var flash    = require('connect-flash');
 
 var configDB = require('./config/database.js');
 
-
 /**
  *  Define the sample application.
  */

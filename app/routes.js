@@ -1,4 +1,7 @@
 var User = require('./models/user');
+var Data = require('./data');
+var fs = require('fs'), filename = "../Test.txt";
+
 
 module.exports = function(app, passport) {
 
@@ -6,6 +9,82 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
+
+
+
+
+
+
+
+
+
+		/*fs.readFile(filename, 'utf8', function(err, data) {
+  if (err) throw err;
+  console.log('OK: ' + filename);
+
+  var line = data.trim().split("\n");
+
+  for (var i=0; i < line.length; i++) {
+    var name;
+    var dir;
+    var stops;
+    var timeWeekly;
+    var timesSat;
+    var timesSun;
+    for (var j=0; j <6; j++) {
+      if (j == 0) {
+            name = line[i];
+      } else if (j == 1) {
+        dir = line[i];
+        } else if (j == 2) {
+            stops = line[i].split(",");
+        } else if (j == 3) {
+            var array = line[i].split(",");
+            for (var k=1; k < array.length; k++) {
+                  timesWeekly[k] = array[k].split("!");
+            }
+        } else if (j == 4) {
+            var array = line[i].split(",");
+            for (var k=1; k < array.length; k++) {
+                  timeSat[k] = array[k].split("!");
+            }
+        } else if (j == 5) {
+            var array = line[i].split(",");
+            for (var k=1; k < array.length; k++) {
+                  timesSun[k] = array[k].split("!");
+            }
+        }
+    }
+
+    for (var u=1; u < stops.length; u++) {
+      var curStopName = stops[u];
+      var timeWeeklyArray;
+      var timeSatArray;
+      var timesSunArray;
+      for (var h=1; h < timesWeekly[u].length; h++) {
+        timeWeeklyArray.add(timesWeekly[u][h]);
+      }
+      for (var h=1; h < timesSat[u].length; h++) {
+        timeSatArray.add(timesSat[u][h]);
+      }
+      for (var h=1; h < timesSun[u].length; h++) {
+        timeSunArray.add(timesSun[u][h]);
+      }
+      Data.bus = {busName : name, busDir : dir, stops = [{"stopName" : curStopName, "timesWeekly" : timeWeeklyArray, "timesSat" : timeSatArray, "timesSun" : timesSunArray}]};
+      Data.save();
+    }
+  }
+
+
+});*/
+
+
+
+
+
+
+
+
 		res.render('landingpage.ejs', { message: req.flash('loginMessage') });
 	});
 
