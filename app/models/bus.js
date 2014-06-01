@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
 var Stop = require('./stop');
 
 var busSchema = mongoose.Schema({
@@ -7,7 +7,7 @@ var busSchema = mongoose.Schema({
 	stops : [Stop]
 });
 
-module.exports = mongoose.model('Bus', busSchema);
+module.exports = mongoose.model('Bus', busSchema);*/
 
 
 /*var fs = require('fs'), filename = "Test.txt";
@@ -24,7 +24,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
   	var timeWeekly;
   	var timesSat;
   	var timesSun;
-  	for (var j=0; j <6; j+++) {
+  	for (var j=0; j <7; j+++) {
   		if (j == 0) {
   			num = line[i];
   		} else if (j == 1) {

@@ -1,19 +1,35 @@
 // load the things we need
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-var Bus = require('./bus');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
     email : String,
     password : String,
-
     fullname : String,
     phone : String,
     likes : Number,
-    dislikes : Number, 
+    dislikes : Number,
+    userBuses : Array,
     
-    favBuses : [Bus],
+    /*
+    {
+    favBuses : 
+    {
+	    busName : String,
+	    stop : Array of {
+	    			stopName : String,
+	    			timeWeekly : Array,  //of strings
+	    			timeSat : Array,  //of strings
+					timeSun : Array  //of strings
+	    		}
+    }}*/
+	   
+	    
+	    	
+	    	
+	    
+    
 });
 
 // methods ======================

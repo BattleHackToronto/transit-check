@@ -40,9 +40,12 @@ module.exports = function(app, passport) {
 	}));
 
 	app.post('/submitBuses', isLoggedIn, function(req, res){
-		User.findByIdAndUpdate(req.user._id).exec(function(){
+		//var newUser = User.findById(req.user._id);
+		//newUser.update()
+		//newUser.favBuses.push('routes');
+		User.update({_id: req.user._id},{$push:{userBuses:req.body.route}});
+		res.redirect('/profile/'+req.user._id);
 
-		});		
 	});
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
