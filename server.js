@@ -137,7 +137,7 @@ var SampleApp = function() {
 
         mongoose.connect(configDB.url); // connect to our database
 
-        //require('./config/passport')(passport);
+        require('./config/passport')(passport);
         require('./app/routes.js')(self.app, passport);
     };
 
