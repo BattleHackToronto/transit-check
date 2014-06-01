@@ -25,7 +25,7 @@ body {
 	background: #ffffff; 
 	margin: 0; 
 	height: 100%; 
-	color: #384452;
+	color: #000;
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	}
@@ -70,12 +70,10 @@ a:focus {
 ::-moz-selection  {
 	color: #fff;
 	text-shadow:none;
-	background:#2B2E31;
 }
 ::selection {
 	color: #fff;
 	text-shadow:none;
-	background:#2B2E31;
 }
 
 .centered {
@@ -132,8 +130,8 @@ a:focus {
 
 .btn-theme {
   color: #fff;
-  background-color: #384452;
-  border-color: #384452;
+  background-color: #222222;
+	border-color: #ffffff;
   margin: 4px;
 }
 .btn-theme:hover,
@@ -150,8 +148,10 @@ a:focus {
 .dmbutton:active,
 .dmbutton:focus{
 	color: #ffffff;
-	background-color: #222222;
-	border-color: #ffffff;
+	
+
+	background-color: #384452;
+  border-color: #384452;
 }
 .dmbutton {
 	background:rgba(0, 0, 0, 0);
@@ -205,21 +205,26 @@ a:focus {
 ################################################################# */
 
 #headerwrap {
-	background-color: #00b3fe;
+	background-image: url("images/mainbg.jpg");
 	min-height: 550px;
 	padding-top: 100px;
 	padding-bottom: 0px;
 	text-align: center;
+
+
+
+
 }
 
-#headerwrap h3, h5 {
+#headerwrap h3, h5, h4 {
 	color: white;
 	font-weight: 400;
+	line-height: 1.25;
 }
 
-#headerwrap h1 {
+#headerwrap h1, h2 {
 	color: white;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 
 #headerwrap .img-responsive {
@@ -457,4 +462,43 @@ csmall2 {
 .share i {
 	padding-right: 15px;
 	font-size: 18px;
+}
+
+
+#loginBox
+{
+	max-width: 50%;
+
+	max-height: 20%;
+}
+
+#loginBox h1
+{
+	border-top: 1px solid white ;
+	padding-top: 20px ;
+}
+#loginBox .form-group
+{
+	max-width: 35%;
+
+	/*
+		 text-shadow:
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	1px 1px 0 #fff; 
+	*/
+	color: white;
+	margin-left: auto ;
+  margin-right: auto ;
+		letter-spacing:1.5px;
+
+}
+
+#loginBox button
+{
+	background-color: #08C3CA;
+    border: 1px solid darkblue;
+
+
 }
