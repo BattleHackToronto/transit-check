@@ -230,7 +230,9 @@
 						<strong>email</strong>: <%= user.email %><br>
 						<strong>phone</strong>: <%= user.phone %><br>
 						<strong>Bus routes</strong>: <ul>
-						<li><%= user.userBuses[0].busName %></li>
+						<% user.userBuses.forEach(function(entry){ %>
+						<li><%= entry.busName %></li>
+						<%});%>
 						</ul><br>
 						
 					</p>
