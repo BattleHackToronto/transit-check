@@ -228,7 +228,11 @@
 				<% if (user._id == id){ %>
 					<p>
 						<strong>email</strong>: <%= user.email %><br>
-						<strong>phone</strong>: <%= user.phone %>
+						<strong>phone</strong>: <%= user.phone %><br>
+						<strong>Bus routes</strong>: <ul>
+						<li><%= user.userBuses[0].busName %></li>
+						</ul><br>
+						
 					</p>
 				<% }else{ %>
 					<p>
