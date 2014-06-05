@@ -59,10 +59,9 @@
 					<p>
 						<strong>email</strong>: <%= user.email %><br>
 						<strong>phone</strong>: <%= user.phone %><br>
-						<strong>Bus routes</strong>: <ul>
-						<% user.userBuses.forEach(function(entry){ %>
-						<li><%= entry.busName %></li>
-						<%});%>
+						<strong>Buses</strong>: <% for(var i=0; i<user.userBuses.length; i++){ %>
+							<%= user.userBuses[i] %>
+						<% } %>
 						</ul><br>
 						
 					</p>
@@ -76,10 +75,10 @@
 
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
+			<h3>Choose your routes</h3>
 				<% for(var i=0; i < BusArray.results.collection1.length; i++){ %>
-					<input type="checkbox" name="vehicle" value="Bike"><%=BusArray.results.collection1[i].RouteName.text %><br>
+					<input type="checkbox" name="<%=BusArray.results.collection1.length %>" value="on"><%=BusArray.results.collection1[i].RouteName.text %><br>
 						<%}%>
-			</form>
 
   				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>

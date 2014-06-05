@@ -76,22 +76,31 @@ client.sendMessage({
 	}));
 
 	app.post('/submitBuses', isLoggedIn, function(req, res){
-		//var newUser = User.findById(req.user._id);
-		//newUser.update()
-		//newUser.favBuses.push('routes');
-		User.update({_id: req.user._id},{$push:{userBuses:req.body.route}});
+		var BusArray = [];
+		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
+			BusArray = JSON.parse(body)
+
+		});
+		//var addBuses = [];
+		BusArray.forEach(function(entry){
+			if(req.body[entry] === "on"){
+				req.user.userBuses.push(entry);
+			}
+		});
 		res.redirect('/profile/'+req.user._id);
 
-	});
+		});
+
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
+		console.log('Upload successful!  Server responded with:', req.user.userBuses);
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
-			console.log('Upload successful!  Server responded with:', body);
+			
 			res.render('profile.ejs', {
 			user : req.user, // get the user out of session and pass to template
 			id : req.params.id,
 			BusArray : JSON.parse(body)
 		});
-		})
+		});
 	});
 
 	// =====================================

@@ -66,13 +66,13 @@ module.exports = function(passport) {
                 newUser.email    = email;
                 newUser.password = newUser.generateHash(password);
                 newUser.phone = req.body.phone;
-                newUser.likes = 1;
-                newUser.dislikes = 2;
+                newUser.userBuses = [];
                 //newUser.favBuses[0] = {};
-                newUser.userBuses =  [{"busName" : "Sheppard-Yonge",
+                //newUser.userBuses="Bayview";
+                /*newUser.userBuses =  [{"busName" : "Bayview",
                     "stop":[{"stopName":"union", "timeWeekly":["dgn","gjfg"], "timeSat":["fgn","dfhhd"], "timeSun":["dfd","dfhgdf"]}]
-
-                }];
+                
+                }];*/
                 /*newUser.favBuses.push(.stop[0].stopName = "Eglinton";
                 newUser.favBuses[0].stop[0].timeWeekly = [1,2,3,4,5,6];
                 newUser.favBuses[0].stop[0].timeSat = [1,2,3,4,5,6];
