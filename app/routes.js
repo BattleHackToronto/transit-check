@@ -1,5 +1,5 @@
 var User = require('./models/user');
-
+var request = require("request");
 module.exports = function(app, passport) {
 
 	// =====================================
@@ -84,10 +84,14 @@ client.sendMessage({
 
 	});
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
+		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
+			console.log('Upload successful!  Server responded with:', body);
+			res.render('profile.ejs', {
 			user : req.user, // get the user out of session and pass to template
-			id : req.params.id
+			id : req.params.id,
+			BusArray : JSON.parse(body)
 		});
+		})
 	});
 
 	// =====================================

@@ -228,6 +228,8 @@
 				<% if (user._id == id){ %>
 					<p>
 						<strong>email</strong>: <%= user.email %><br>
+						<%= BusArray.results.collection1[0].RouteName.text
+						%>
 						<strong>phone</strong>: <%= user.phone %><br>
 						<strong>Bus routes</strong>: <ul>
 						<% user.userBuses.forEach(function(entry){ %>
