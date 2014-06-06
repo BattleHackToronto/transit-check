@@ -88,22 +88,14 @@ client.sendMessage({
 					console.log(typeof(myArr));
 				}
 			});
-			User.findByIdAndUpdate(req.user._id, {email: "Aditya"}, function(err){
-				if(err){
-					console.log(err);
-				}
-				else{
-					res.redirect('/profile/'+req.user._id);
-				}
-			});
-		    /*User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
+		    User.findByIdAndUpdate(req.user._id, {userBuses: ["Aditya", "Pikachu"]},function(err){
       			if(err){
         			console.log(err);
         			res.redirect('/profile/'+req.user._id);
       			}else{
         			res.redirect('/profile/'+req.user._id);
       			}
-    		});*/
+    		});
 		});
 		//var addBuses = [];
 		

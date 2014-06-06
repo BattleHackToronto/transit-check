@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     password : String,
     fullname : String,
     phone : String,
-    userBuses : [{type: String}],
+    userBuses : [{type: String}]
 });
 
 // methods ======================
