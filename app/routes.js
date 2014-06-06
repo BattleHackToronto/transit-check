@@ -77,6 +77,7 @@ client.sendMessage({
 
 	app.post('/submitBuses', isLoggedIn, function(req, res){
 		var BusArray ;
+		var myArr = [];
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
 			console.log("efafdwdw");
 
@@ -85,16 +86,21 @@ client.sendMessage({
 			BusArray.forEach(function(item){
 				//console.log(typeof(req.body[item.RouteName.text]));
 				if(req.body[item.RouteName.text] === "on"){
-					console.log("!hoorray");
+					myArr.push(String(item.RouteName.text));
 				}
-				else{
-					console.log("djkasfkafj");
-				}
+				console.log(typeof(myArr));
 			});
-
+		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
+      			if(err){
+        			console.log(err);
+        			res.redirect('/profile/'+req.user._id);
+      			}else{
+        			res.redirect('/profile/'+req.user._id);
+      			}
+    		});
 		});
 		//var addBuses = [];
-		res.redirect('/profile/'+req.user._id);
+		
 
 		});
 

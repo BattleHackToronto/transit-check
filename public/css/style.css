@@ -70,11 +70,11 @@ a:focus {
 }
 
 ::-moz-selection  {
-	color: #fff;
+	background-color: blue;
 	text-shadow:none;
 }
 ::selection {
-	color: #fff;
+	background-color: blue;
 	text-shadow:none;
 }
 
