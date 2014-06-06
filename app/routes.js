@@ -14,7 +14,9 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/notify', function(req, res) {
-		res.render('notify.ejs');
+		res.render('notify.ejs',{
+			User: req.user
+		});
 	});
 
 	// =====================================
@@ -40,7 +42,7 @@ var client = require('twilio')('ACfd84484ff7e2ee28734b5f3fb0629d8e', 'ebb9fb707b
 //Send an SMS text message
 client.sendMessage({
 
-    to:'+15197812145', // Any number Twilio can deliver to
+    to:'+15197813466', // Any number Twilio can deliver to
     from: '+12264002188', // A number you bought from Twilio and can use for outbound communication
     body: req.params.data // body of the SMS message
 
@@ -89,22 +91,12 @@ client.sendMessage({
 				return false;
 			};
 			BusArray.forEach(function(item){
-				//console.log(typeof(req.body[item.RouteName.text]));
 				if(req.body[item.RouteName.text] === "on"){
 					if(isBusAdded(item.RouteName.text) == false){
 						myArr.push(String(item.RouteName.text));
-						//console.log(myArr);
 					}
 				}
 			});
-		    /*User.findByIdAndUpdate(req.user._id, {userBuses: ["Aditya", "Pikachu"]},function(err){
-      			if(err){
-        			console.log(err);
-        			res.redirect('/profile/'+req.user._id);
-      			}else{
-        			res.redirect('/profile/'+req.user._id);
-      			}
-    		});*/
 		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
       			if(err){
         			console.log(err);
@@ -114,10 +106,7 @@ client.sendMessage({
       			}
     		});    		
 		});
-		//var addBuses = [];
-		
-
-		});
+	});
 
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
 		

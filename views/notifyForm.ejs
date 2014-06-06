@@ -227,7 +227,12 @@
 				<div class="ui-widget">
 					<label for="routes">Routes: </label> <br>
   					<input id="tags" name="route">
-				</div>
+  				</div>
+  					DJHED
+  					<% User.userBuses.forEach(function(entry){ %>
+					<input type="checkbox" name="<%= entry %>"><%= entry %><br>
+					<% }); %>
+				
 			<br>
 			<label for="routes">Alert: </label> <br>
 			<input type="text" name="transitalert"> <br>		
