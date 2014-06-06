@@ -79,25 +79,31 @@ client.sendMessage({
 		var BusArray ;
 		var myArr = [];
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
-			console.log("efafdwdw");
-
 			BusArray = JSON.parse(body).results.collection1;
 
 			BusArray.forEach(function(item){
 				//console.log(typeof(req.body[item.RouteName.text]));
 				if(req.body[item.RouteName.text] === "on"){
 					myArr.push(String(item.RouteName.text));
+					console.log(typeof(myArr));
 				}
-				console.log(typeof(myArr));
 			});
-		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
+			User.findByIdAndUpdate(req.user._id, {email: "Aditya"}, function(err){
+				if(err){
+					console.log(err);
+				}
+				else{
+					res.redirect('/profile/'+req.user._id);
+				}
+			});
+		    /*User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
       			if(err){
         			console.log(err);
         			res.redirect('/profile/'+req.user._id);
       			}else{
         			res.redirect('/profile/'+req.user._id);
       			}
-    		});
+    		});*/
 		});
 		//var addBuses = [];
 		
