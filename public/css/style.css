@@ -66,15 +66,15 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color:#01b2fe;
+  color:#6699FF;
 }
 
 ::-moz-selection  {
-	background-color: blue;
+	background-color: #6699FF;
 	text-shadow:none;
 }
 ::selection {
-	background-color: blue;
+	background-color: #6699FF;
 	text-shadow:none;
 }
 
