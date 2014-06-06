@@ -80,12 +80,21 @@ client.sendMessage({
 		var myArr = [];
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
 			BusArray = JSON.parse(body).results.collection1;
-
+			var isBusAdded = function(str){
+				for(var i = 0; i < req.user.userBuses.length; i++){
+					if(str == req.user.userBuses[i]){
+						return true;
+					}
+				}
+				return false;
+			};
 			BusArray.forEach(function(item){
 				//console.log(typeof(req.body[item.RouteName.text]));
 				if(req.body[item.RouteName.text] === "on"){
-					myArr.push(String(item.RouteName.text));
-					console.log(myArr);
+					if(isBusAdded(item.RouteName.text) == false){
+						myArr.push(String(item.RouteName.text));
+						//console.log(myArr);
+					}
 				}
 			});
 		    /*User.findByIdAndUpdate(req.user._id, {userBuses: ["Aditya", "Pikachu"]},function(err){
