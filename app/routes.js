@@ -85,17 +85,25 @@ client.sendMessage({
 				//console.log(typeof(req.body[item.RouteName.text]));
 				if(req.body[item.RouteName.text] === "on"){
 					myArr.push(String(item.RouteName.text));
-					console.log(typeof(myArr));
+					console.log(myArr);
 				}
 			});
-		    User.findByIdAndUpdate(req.user._id, {userBuses: ["Aditya", "Pikachu"]},function(err){
+		    /*User.findByIdAndUpdate(req.user._id, {userBuses: ["Aditya", "Pikachu"]},function(err){
       			if(err){
         			console.log(err);
         			res.redirect('/profile/'+req.user._id);
       			}else{
         			res.redirect('/profile/'+req.user._id);
       			}
-    		});
+    		});*/
+		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
+      			if(err){
+        			console.log(err);
+        			res.redirect('/profile/'+req.user._id);
+      			}else{
+        			res.redirect('/profile/'+req.user._id);
+      			}
+    		});    		
 		});
 		//var addBuses = [];
 		
