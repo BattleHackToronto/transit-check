@@ -59,6 +59,7 @@
 					<p>
 						<strong>email</strong>: <%= user.email %><br>
 						<strong>phone</strong>: <%= user.phone %><br>
+						<strong>phone</strong>: <%= BusArray.results.collection1.length %><br>
 						<strong>Buses</strong>: <% for(var i=0; i<user.userBuses.length; i++){ %>
 							<%= user.userBuses[i] %>
 						<% } %>
@@ -67,7 +68,7 @@
 					</p>
 				<% }else{ %>
 					<p>
-						<strong>email</strong>: <%= user.email %><br>
+						<strong>email</strong>: <%= user.email  %><br>
 					</p>
 					<% } %>
 			</div>
@@ -75,10 +76,13 @@
 
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
+			<input type="text" name="test" value="qwerty"> 
+			<input type="checkbox" name="aditya"> aditya<br>
+			<input type="checkbox" name="addy"> addy<br>
 			<h3>Choose your routes</h3>
-				<% for(var i=0; i < BusArray.results.collection1.length; i++){ %>
-					<input type="checkbox" name="<%=BusArray.results.collection1.length %>" value="on"><%=BusArray.results.collection1[i].RouteName.text %><br>
-						<%}%>
+				<% BusArray.results.collection1.forEach(function(entry){ %>
+					<input type="checkbox" name="<%= entry.RouteName.text %>"><%= entry.RouteName.text %><br>
+					<% }); %>
 
   				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
