@@ -31,7 +31,15 @@ module.exports = function(app, passport) {
 
 	app.post('/notifySubmit', isLoggedIn, function(req, res){
 		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert;
-		res.redirect('/notifySubmit/'+data);
+
+		    User.findByIdAndUpdate(req.user._id, {$push: {alerts: data}},function(err){
+      			if(err){
+        			console.log(err);
+        			res.redirect('/notifySubmit/'+data);
+      			}else{
+        			res.redirect('/notifySubmit/'+data);
+      			}
+    		});    
 	});
 
 	app.get('/notifySubmit/:data', isLoggedIn, function(req, res){

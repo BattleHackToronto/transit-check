@@ -35,7 +35,7 @@
 	    $( "#tags" ).autocomplete({
 	      source: Tags
 	    });*/
-	
+
   	});
 	</script>
 
@@ -62,6 +62,10 @@
 						<strong>phone</strong>: <%= user.phone %><br>
 						<strong>Buses</strong>:<br> <% for(var i=0; i<user.userBuses.length; i++){ %>
 							<%= user.userBuses[i] %> <br>
+						<% } %>
+						</ul><br>
+						<strong>Alerts</strong>:<br> <% for(var i=0; i<user.alerts.length; i++){ %>
+							<%= user.alerts[i] %> <br>
 						<% } %>
 						</ul><br>
 						
