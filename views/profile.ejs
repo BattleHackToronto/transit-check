@@ -60,14 +60,16 @@
 					<p>
 						<strong>email</strong>: <%= user.email %><br>
 						<strong>phone</strong>: <%= user.phone %><br>
-						<strong>Buses</strong>:<br> <% for(var i=0; i<user.userBuses.length; i++){ %>
-							<%= user.userBuses[i] %> <br>
+						<strong>Buses</strong>:<br><ul> <% for(var i=0; i<user.userBuses.length; i++){ %>
+							<li><%= user.userBuses[i] %></li> 
 						<% } %>
 						</ul><br>
-						<strong>Alerts</strong>:<br> <% for(var i=0; i<user.alerts.length; i++){ %>
-							<%= user.alerts[i] %> <br>
+						<strong>Alerts</strong>:<br> <ul>
+							<% for(var i=0; i<user.alerts.length; i++){ %>
+							<li><%= user.alerts[i] %></li> <br>
 						<% } %>
-						</ul><br>
+						</ul>
+						<br>
 						
 					</p>
 				<% }else{ %>
