@@ -19,6 +19,12 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	app.get('/busstops', function(req, res){
+		request("http://www.kimonolabs.com/api/3sgtp6yo?apikey=748efc029107db65254154caaec4a867&kimbypage=1", function(err, response, body) {
+  			console.log(response);
+  			res.render('about.ejs');
+		});
+	});
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
