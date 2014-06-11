@@ -1,0 +1,70 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Profile</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<% include navbar %>
+<div class="container">
+
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Add Bus Routes</h1>
+	</div>
+
+	<div class="row">
+
+		<!-- LOCAL INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<% if(user.userBuses.length != 0){ %>
+					<h3></span>Your current bus routes</h3>
+					<ul> 
+						<% for(var i=0; i<user.userBuses.length; i++){ %>
+							<li><%= user.userBuses[i] %></li> 
+						<% } %>
+					</ul>
+				<%}else{%>
+					<h3>You don't have any bus routes added yet. You should add some immediately.</h3>
+				<%}%>
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<form action="/submitBuses" method="post">
+			<h3>Want to add some more bus routes?</h3>
+
+				<% BusArray.results.collection1.forEach(function(entry){ %>
+					<input type="checkbox" name="<%= entry.RouteName.text %>"><%= entry.RouteName.text %><br>
+					<% }); %>
+
+  				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+</body>
+</html>

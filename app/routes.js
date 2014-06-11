@@ -14,6 +14,15 @@ module.exports = function(app, passport) {
 		res.render('about.ejs');
 	});
 
+	app.get('/addRoutes', function(req, res){
+		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
+			res.render('addRoutes.ejs',{
+				user : req.user,
+				BusArray : JSON.parse(body)
+			});
+		});
+	});
+
 	app.get('/notify', function(req, res) {
 		res.render('notify.ejs',{
 			User: req.user
@@ -113,9 +122,9 @@ module.exports = function(app, passport) {
 		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
       			if(err){
         			console.log(err);
-        			res.redirect('/profile/'+req.user._id);
+        			res.redirect('/addRoutes');
       			}else{
-        			res.redirect('/profile/'+req.user._id);
+        			res.redirect('/addRoutes');
       			}
     		});    		
 		});
