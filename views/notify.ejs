@@ -28,29 +28,31 @@
 </head>
 <body>
 	<% include navbar%>
-	<div class="container">
+	<div class="container" style="max-width: 70%;">
 		<h1>Fill the form to notify alerts</h1>
 		<form action="/notifySubmit" method="post">
-		<div class="well">
-		<div class="row">
-			<div class="col-xs-6">
+		<div class="jumbotron">
+			<div class="form-group">
 			<p>Choose direction: </p>
-			<input type="radio" name="direction" value="Northbound">  Northbound <br>
+			<input type="radio" name="direction" value="Northbound" >  Northbound <br>
 			<input type="radio" name="direction" value="Southbound">  Southbound <br>
 			<input type="radio" name="direction" value="Westbound">  Westbound <br>
 			<input type="radio" name="direction" value="Eastbound">  Eastbound<br>	
 			</div>
-			<div class="col-xs-6">
+			<div class="form-group">
 				<% User.userBuses.forEach(function(entry){ %>
 					<input type="radio" name="route" value="<%= entry %>"><%= entry %><br>
 					<% }); %>
-			<br>
-			<label for="routes">Alert: </label> <br>
-			<input type="text" name="transitalert"> <br>		
 			</div>
+			<div class="form-group">
+			<label for="routes">Alert: </label> 
+			<input type="text" rows="3" name="transitalert" class="form-control"> 
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>	
 		</div>
+	</div>
 		<br>
-		 	<button type="submit" class="btn btn-primary">Submit</button>
+		 	
 		 </div>
 		</form>
 	</div>

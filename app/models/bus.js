@@ -4,7 +4,7 @@ var bcrypt   = require('bcrypt-nodejs');
 
 
 var busSchema = mongoose.Schema({
-	user: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+	user : [{type: String}]
 });
 
 // methods ======================
