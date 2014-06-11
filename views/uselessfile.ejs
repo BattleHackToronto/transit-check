@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>TransitCheck - A community driven solution to get you places.</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    	<style>
+		body 		{ padding-top:80px; }
+	</style>
+	<script>
+	$(function() {
+	    var eastTags = [
+	    	"10  Van Horne ",
+			"12  Kingston Rd ",
+			"14  Glencairn ",
+			"15  Evans ",
+			"20  Cliffside ",
+			"26  Dupont ",
+			"28  Davisville ",
+			"30  Lambton ",
+			"32  Eglinton West ",
+			"34  Eglinton East ",
+			"36  Finch West ",
+			"38  Highland Creek ",
+			"39  Finch East ",
+			"40  Junction ",
+			"42  Cummer ",
+			"48  Rathburn ",
+			"49  Bloor West ",
+			"50  Burnhamthorpe ",
+			"52  Lawrence West ",
+			"53  Steeles East ",
+			"54  Lawrence East ",
+			"59  Maple Leaf ",
+			"60  Steeles West ",
+			"62  Mortimer ",
+			"70  O'Connor ",
+			"78  St Andrews ",
+			"80  Queensway ",
+			"82  Rosedale ",
+			"84  Sheppard West ",
+			"85  Sheppard East ",
+			"86  Scarborough ",
+			"87  Cosburn ",
+			"88  South Leaside ",
+			"94  Wellesley ",
+			"95  York Mills ",
+			"96  Wilson ",
+			"98  Willowdale - Senlac ",
+			"108  Downsview ",
+			"113  Danforth ",
+			"115  Silver Hills ",
+			"116  Morningside ",
+			"120  Calvington ",
+			"122  Graydon Hall ",
+			"124  Sunnybrook ",
+			"125  Drewry ",
+			"127  Davenport ",
+			"131  Nugget ",
+			"132  Milner ",
+			"135  Gerrard ",
+			"139  Finch-Don Mills ",
+			"161  Rogers Rd ",
+			"162  Lawrence - Donway ",
+			"165  Weston Rd North ",
+			"169  Huntingwood ",
+			"172  Cherry Street ",
+			"190  Scarborough Centre Rocket ",
+			"196  York University Rocket ",
+			"199  Finch Rocket ",
+			"300  Bloor - Danforth ",
+			"301  Queen ",
+			"305  Eglinton East ",
+			"306  Carlton ",
+			"307  Eglinton West ",
+			"308  Finch East ",
+			"309  Finch West ",
+			"312  St Clair ",
+			"319  Wilson ",
+			"321  York Mills ",
+			"322  Coxwell ",
+			"352  Lawrence West ",
+			"353  Steeles East ",
+			"354  Lawrence East ",
+			"385  Sheppard East ",
+			"404  East York ",
+			"405  Etobicoke ",
+			"143  Downtown / Beach Express ",
+			"145  Downtown / Humber Bay Express "
+	    ];
+
+		var northTags = [
+			"5  Avenue Rd",
+			"6  Bay",
+			"7  Bathurst",
+			"8  Broadview",
+			"9  Bellamy",
+			"11  Bayview",
+			"16  McCowan",
+			"17  Birchmount",
+			"21  Brimley",
+			"22  Coxwell",
+			"23  Dawes",
+			"24  Victoria Park",
+			"25  Don Mills",
+			"29  Dufferin",
+			"31  Greenwood",
+			"33  Forest Hill",
+			"35  Jane",
+			"37  Islington",
+			"41  Keele",
+			"43  Kennedy",
+			"44  Kipling South",
+			"45  Kipling",
+			"46  Martin Grove",
+			"47  Lansdowne",
+			"51  Leslie",
+			"55  Warren Park",
+			"56  Leaside",
+			"57  Midland",
+			"61  Avenue Rd North",
+			"63  Ossington",
+			"64  Main",
+			"65  Parliament",
+			"66  Prince Edward",
+			"67  Pharmacy",
+			"68  Warden",
+			"69  Warden South",
+			"71  Runnymede",
+			"72  Pape",
+			"73  Royal York",
+			"74  Mt Pleasant",
+			"75  Sherbourne",
+			"76  Royal York South",
+			"77  Swansea",
+			"79  Scarlett Rd",
+			"81  Thorncliffe Park",
+			"83  Jones",
+			"89  Weston",
+			"90  Vaughan",
+			"91  Woodbine",
+			"92  Woodbine South",
+			"97  Yonge",
+			"99  Arrow Rd",
+			"100  Flemingdon Park",
+			"102  Markham Rd",
+			"103  Mt Pleasant North",
+			"104  Faywood",
+			"105  Dufferin North",
+			"107  Keele North",
+			"109  Ranee",
+			"110  Islington South",
+			"111  East Mall",
+			"112  West Mall",
+			"117  Alness",
+			"123  Shorncliffe",
+			"126  Christie",
+			"129  McCowan North",
+			"130  Middlefield",
+			"133  Neilson",
+			"134  Progress",
+			"160  Bathurst North",
+			"167  Pharmacy North",
+			"168  Symington",
+			"171  Mt Dennis",
+			"191  Highway 27 Rocket",
+			"192  Airport Rocket",
+			"193  Exhibition Rocket",
+			"195  Jane Rocket",
+			"224  Victoria Park North",
+			"302  Danforth Rd - McCowan",
+			"303  Don Mills",
+			"310  Bathurst",
+			"311  Islington",
+			"313  Jane",
+			"316  Ossington",
+			"320  Yonge",
+			"324  Victoria Park",
+			"329  Dufferin",
+			"400  Lawrence Manor",
+			"402  Parkdale",
+			"403  South Don Mills",
+			"407  Toronto Rehab Cardiac Centre",
+			"141  Downtown / Mt Pleasant Express",
+			"142  Downtown / Avenue Rd Express",
+			"144  Downtown / Don Valley Express",
+
+		];
+	    $( "#tags" ).autocomplete({
+	      source: eastTags
+	    });
+  	});
+	</script>
+</head>
+<body>
+	<% include navbar%>
+	<div class="container">
+		<h1>Fill the form to notify alerts</h1>
+		<form action="/notifySubmit" method="post">
+		<div class="well">
+		<div class="row">
+			<div class="col-xs-6">
+			<p>Choose direction: </p>
+			<input type="radio" name="direction" value="Northbound">  Northbound <br>
+			<input type="radio" name="direction" value="Southbound">  Southbound <br>
+			<input type="radio" name="direction" value="Westbound">  Westbound <br>
+			<input type="radio" name="direction" value="Eastbound">  Eastbound<br>	
+			</div>
+			<div class="col-xs-6">
+				<div class="ui-widget">
+					<label for="routes">Routes: </label> <br>
+  					<input id="tags" name="route">
+  				</div>
+  					<% User.userBuses.forEach(function(entry){ %>
+					<input type="checkbox" name="<%= entry %>"><%= entry %><br>
+					<% }); %>
+				
+			<br>
+			<label for="routes">Alert: </label> <br>
+			<input type="text" name="transitalert"> <br>		
+			</div>
+		</div>
+		<br>
+		 	<button type="submit" class="btn btn-primary">Submit</button>
+		 </div>
+		</form>
+	</div>
+</body>

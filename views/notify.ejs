@@ -33,20 +33,25 @@
 		<form action="/notifySubmit" method="post">
 		<div class="jumbotron">
 			<div class="form-group">
-			<p>Choose direction: </p>
-			<input type="radio" name="direction" value="Northbound" >  Northbound <br>
-			<input type="radio" name="direction" value="Southbound">  Southbound <br>
-			<input type="radio" name="direction" value="Westbound">  Westbound <br>
-			<input type="radio" name="direction" value="Eastbound">  Eastbound<br>	
+				<label>Choose direction: </label>
+				<div class="radio">
+					<input type="radio" name="direction" value="Northbound" >  Northbound <br>
+					<input type="radio" name="direction" value="Southbound">  Southbound <br>
+					<input type="radio" name="direction" value="Westbound">  Westbound <br>
+					<input type="radio" name="direction" value="Eastbound">  Eastbound<br>	
+				</div>
 			</div>
 			<div class="form-group">
+				<label>Choose bus route: </label>
+				<div class="radio">
 				<% User.userBuses.forEach(function(entry){ %>
 					<input type="radio" name="route" value="<%= entry %>"><%= entry %><br>
 					<% }); %>
+				</div>
 			</div>
 			<div class="form-group">
 			<label for="routes">Alert: </label> 
-			<input type="text" rows="3" name="transitalert" class="form-control"> 
+			<textarea type="text" rows="3" name="transitalert" class="form-control"></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>	
 		</div>

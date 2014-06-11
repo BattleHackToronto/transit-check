@@ -30,7 +30,7 @@
 
 
 	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Add Bus Routes</h1>
+		<h1>Add Bus Routes</h1>
 	</div>
 
 	<div class="row">
@@ -40,7 +40,7 @@
 			<div class="well">
 				<% if(user.userBuses.length != 0){ %>
 					<h3></span>Your current bus routes</h3>
-					<ul> 
+					<ul style="padding-left: 20px"> 
 						<% for(var i=0; i<user.userBuses.length; i++){ %>
 							<li><%= user.userBuses[i] %></li> 
 						<% } %>
@@ -54,11 +54,13 @@
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
 			<h3>Want to add some more bus routes?</h3>
-
+			<div class="checkbox">
 				<% BusArray.results.collection1.forEach(function(entry){ %>
+				<label>
 					<input type="checkbox" name="<%= entry.RouteName.text %>"><%= entry.RouteName.text %><br>
 					<% }); %>
-
+				</label>
+			</div>
   				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
