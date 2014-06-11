@@ -43,49 +43,32 @@
 </head>
 <body>
 <% include navbar %>
-<div class="container">
+<div class="container col-md-8 col-md-offset-2">
 
+    <div class="panel panel-default ">
+      <div class="panel-heading text-center"><h2><%= user.fullname %></h2></div>
+      <div class="panel-body">
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-	</div>
-
-	<div class="row">
-
-		<!-- LOCAL INFORMATION -->
-		<div class="well">
-			<h3><span class="fa fa-user"></span> <%= user.fullname %></h3>
-			<% if (user._id == id){ %>
-				<p>
-					<strong>email</strong>: <%= user.email %><br>
-					<strong>phone</strong>: <%= user.phone %><br>
-					<strong>Buses</strong>:<br><ul> <% for(var i=0; i<user.userBuses.length; i++){ %>
-						<li><%= user.userBuses[i] %></li> 
-					<% } %>
-					</ul><br>
-					<strong>Alerts</strong>:<br> <ul>
-					<% for(var i=0; i<user.alerts.length; i++){ %>
-						<li><%= user.alerts[i] %></li> <br>
-					<% } %>
-					</ul>
-					<br>		
-				</p>
-			<% }else{ %>
-				<p>
-					<strong>email</strong>: <%= user.email %><br>
-					<strong>Buses</strong>:<br> <% for(var i=0; i<user.userBuses.length; i++){ %>
-						<%= user.userBuses[i] %> <br>
-					<% } %>
-					</ul><br>
-					<strong>Alerts</strong>:<br> <% for(var i=0; i<user.alerts.length; i++){ %>
-						<%= user.alerts[i] %> <br>
-					<% } %>
-					</ul><br>
-				</p>
-			<% } %>
-		</div>
-	</div>
-
+        <div>
+          <b>Email: </b>
+          <%= user.email%>
+          <br>   
+          <h5>Alerts</h5>
+          <ul>
+            <% user.alerts.forEach(function(alert){ %>
+            <li><%= alert %></li>
+            <%  });%>
+          </ul>
+          <h5>Bus Routes</h5>
+          <ul>
+            <% user.userBuses.forEach(function(buses){ %>
+            <li><%= buses %></li>
+            <%});%>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
 </div>
 </body>
 </html>
