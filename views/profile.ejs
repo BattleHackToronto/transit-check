@@ -46,24 +46,22 @@
 <div class="container col-md-8 col-md-offset-2">
 
     <div class="panel panel-default ">
-      <div class="panel-heading text-center"><h2><%= user.fullname %></h2></div>
+      <div class="panel-heading text-center panel-title"><h1><%= user.fullname %></h1></div>
       <div class="panel-body">
 
         <div>
-          <b>Email: </b>
-          <%= user.email%>
-
-          <b>Phone: </b>
-          <%= user.phone%>
+          <b>Email: </b><%= user.email%>
+          <br>
+          <b>Phone: </b><%= user.phone%>
           <br>   
           <b>Alerts</b>
-          <ul>
+          <ul style="padding-left: 20px">
             <% user.alerts.forEach(function(alert){ %>
             <li><%= alert %></li>
             <%  });%>
           </ul>
           <b>Bus Routes</b>
-          <ul>
+          <ul style="padding-left: 20px">
             <% user.userBuses.forEach(function(buses){ %>
             <li><%= buses %></li>
             <%});%>
