@@ -46,7 +46,7 @@ module.exports = function(app, passport) {
 	}));
 
 	app.post('/notifySubmit', isLoggedIn, function(req, res){
-		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert;
+		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert+". If you found it useful, like "+req.user.phone+"'s alert.";
 
 		    User.findByIdAndUpdate(req.user._id, {$push: {alerts: data}},function(err){
       			if(err){
