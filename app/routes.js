@@ -68,6 +68,9 @@ module.exports = function(app, passport) {
 	//Send an SMS text message
 		User.find({userBuses: req.params.bus_route}).exec(function(err, userStar){
 			userStar.forEach(function(item){
+				if(item.phone != req.user.phone){
+				console.log(item.phone);
+				console.log(req.user.phone);
 				client.sendMessage({
 				to: item.phone, // Any number Twilio can deliver to
     			from: '+12264002188', // A number you bought from Twilio and can use for outbound communication
@@ -88,6 +91,8 @@ module.exports = function(app, passport) {
     				console.log(err);
     			}
 			});
+				}
+
 			});
 		});
 		res.redirect('/profileRedirect');
