@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 		res.render('about.ejs');
 	});
 
-	app.get('/addRoutes', function(req, res){
+	app.get('/addRoutes', isLoggedIn, function(req, res){
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
 			res.render('addRoutes.ejs',{
 				user : req.user,
@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
 	// =====================================
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profileRedirect', // redirect to the secure profile section
+		successRedirect : '/notify', // redirect to the secure profile section
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
@@ -60,27 +60,37 @@ module.exports = function(app, passport) {
 
 	app.get('/notifySubmit/:data/:bus_route', isLoggedIn, function(req, res){
 		//require the Twilio module and create a REST client
+		//console.log(data);
+		//console.log(bus_route);
 		require("../node_modules/twilio/lib");
 		var client = require('twilio')('ACfd84484ff7e2ee28734b5f3fb0629d8e', 'ebb9fb707b52dbd197544c8023f2b68c');
-
+		//User.find({userBuses})
 	//Send an SMS text message
-		client.sendMessage({
-			to:'+16473900271', // Any number Twilio can deliver to
-    		from: '+12264002188', // A number you bought from Twilio and can use for outbound communication
-    		body: req.params.data // body of the SMS message
+		User.find({userBuses: req.params.bus_route}).exec(function(err, userStar){
+			userStar.forEach(function(item){
+				client.sendMessage({
+				to: item.phone, // Any number Twilio can deliver to
+    			from: '+12264002188', // A number you bought from Twilio and can use for outbound communication
+    			body: req.params.data // body of the SMS message
 
-		}, function(err, responseData) { //this function is executed when a response is received from Twilio
+			}, function(err, responseData) { //this function is executed when a response is received from Twilio
 
-    	if (!err) { // "err" is an error received during the request, if any
+	    		if (!err) { // "err" is an error received during the request, if any
 
-        	// "responseData" is a JavaScript object containing data received from Twilio.
-        	// A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
-        	// http://www.twilio.com/docs/api/rest/sending-sms#example-1
-        	console.log(responseData.from); // outputs "+14506667788"
-        	console.log(responseData.body); // outputs "word to your mother."
-        	res.redirect('/profileRedirect');
-    	}
-	});
+		        	// "responseData" is a JavaScript object containing data received from Twilio.
+		        	// A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
+		        	// http://www.twilio.com/docs/api/rest/sending-sms#example-1
+		        	console.log(responseData.from); // outputs "+14506667788"
+		        	console.log(responseData.body); // outputs "word to your mother."
+		        	
+    			}
+    			else{
+    				console.log(err);
+    			}
+			});
+			});
+		});
+		res.redirect('/profileRedirect');
 	});
 
 	app.get('/profileRedirect', isLoggedIn, function(req, res) {

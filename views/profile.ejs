@@ -52,14 +52,17 @@
         <div>
           <b>Email: </b>
           <%= user.email%>
+
+          <b>Phone: </b>
+          <%= user.phone%>
           <br>   
-          <h5>Alerts</h5>
+          <b>Alerts</b>
           <ul>
             <% user.alerts.forEach(function(alert){ %>
             <li><%= alert %></li>
             <%  });%>
           </ul>
-          <h5>Bus Routes</h5>
+          <b>Bus Routes</b>
           <ul>
             <% user.userBuses.forEach(function(buses){ %>
             <li><%= buses %></li>
