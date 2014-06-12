@@ -31,13 +31,16 @@ module.exports = function(app, passport) {
 
 	app.get('/allAlerts', isLoggedIn, function(req, res){
 		User.find({}).exec(function(err, userStar){
-			var allAlerts=[];		console.log("a");
+			var allAlerts=[{
+				alert: [{type: String}],
+				user: String
+			}];		console.log("a");
 			userStar.forEach(function(item){
 				console.log("b");
 
 				item.alerts.forEach(function(alertItem){
 					//console.log(alertItem);
-					allAlerts.push(alertItem);
+					allAlerts.push({alert: alertItem, user: item.fullname});
 					console.log(allAlerts.length);
 				});
 			});
