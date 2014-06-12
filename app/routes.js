@@ -177,12 +177,14 @@ module.exports = function(app, passport) {
 	app.get('/profile/:id', isLoggedIn, function(req, res) {
 		
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
-			
-			res.render('profile.ejs', {
-			user : req.user, // get the user out of session and pass to template
-			id : req.params.id,
-			BusArray : JSON.parse(body)
-		});
+			User.findById(req.params.id).exec(function(err,doc){
+				if(!err){
+					res.render('profile.ejs', {
+					user : doc, // get the user out of session and pass to template
+					id : req.params.id,
+					BusArray : JSON.parse(body)});
+				}
+			});
 		});
 	});
 
