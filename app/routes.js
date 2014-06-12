@@ -31,16 +31,14 @@ module.exports = function(app, passport) {
 
 	app.get('/allAlerts', isLoggedIn, function(req, res){
 		User.find({}).exec(function(err, userStar){
-			var allAlerts=[{
-				alert: [{type: String}],
-				user: String
-			}];		console.log("a");
+			var allAlerts = [];
+			console.log("a");
 			userStar.forEach(function(item){
 				console.log("b");
 
 				item.alerts.forEach(function(alertItem){
 					//console.log(alertItem);
-					allAlerts.push({alert: alertItem, user: item.fullname});
+					allAlerts.push({alert: alertItem, username: item.fullname, userid: item._id});
 					console.log(allAlerts.length);
 				});
 			});
@@ -126,7 +124,9 @@ module.exports = function(app, passport) {
 		});
 		res.redirect('/profileRedirect');
 	});
-
+	app.get('/profileRedirectDuplicate', isLoggedIn, function(req,res){
+		res.redirect('/profile/'+req.query.userid);
+	});
 	app.get('/profileRedirect', isLoggedIn, function(req, res) {
 		res.redirect('/profile/' + req.user._id);
 	});
