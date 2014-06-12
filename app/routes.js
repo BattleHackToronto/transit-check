@@ -16,10 +16,36 @@ module.exports = function(app, passport) {
 
 	app.get('/addRoutes', isLoggedIn, function(req, res){
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
+			var allBuses = [];
+			JSON.parse(body).results.collection1.forEach(function(buses){
+				allBuses.push(buses.RouteName.text);
+			});
+			console.log(allBuses);
 			res.render('addRoutes.ejs',{
 				user : req.user,
-				BusArray : JSON.parse(body)
+				BusArray : JSON.parse(body),
+				allBuses : allBuses
 			});
+		});
+	});
+
+	app.get('/allAlerts', isLoggedIn, function(req, res){
+		User.find({}).exec(function(err, userStar){
+			var allAlerts=[];		console.log("a");
+			userStar.forEach(function(item){
+				console.log("b");
+
+				item.alerts.forEach(function(alertItem){
+					//console.log(alertItem);
+					allAlerts.push(alertItem);
+					console.log(allAlerts.length);
+				});
+			});
+					console.log("zombie");
+		console.log(allAlerts);
+		res.render('allAlerts.ejs',{
+			allAlerts: allAlerts
+		});
 		});
 	});
 
