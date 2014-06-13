@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
 			JSON.parse(body).results.collection1.forEach(function(buses){
 				allBuses.push(buses.RouteName.text);
 			});
-			console.log(allBuses);
+			//console.log(allBuses);
 			res.render('addRoutes.ejs',{
 				user : req.user,
 				BusArray : JSON.parse(body),
@@ -63,7 +63,7 @@ module.exports = function(app, passport) {
 				console.log(err);
 				res.redirect('/profileRedirect');
 			}
-		})
+		});
 	});
 
 	app.get('/notify', function(req, res) {
@@ -188,6 +188,31 @@ module.exports = function(app, passport) {
       			}
     		});    		
 		});
+	});
+
+	app.post('/removeBuses', isLoggedIn, function(req, res){
+		var toBeRemoved = req.body.bus;
+		console.log(toBeRemoved);
+		var index = req.user.userBuses.indexOf(toBeRemoved);
+		console.log(index);
+		console.log(req.user.userBuses);
+		req.user.userBuses.splice(index, 1);
+		console.log(req.user.userBuses);
+		if(index > -1){
+		User.findByIdAndUpdate(req.user._id, {userBuses: req.user.userBuses}, function(err){
+			if(!err){
+				res.redirect('/addRoutes');
+			}
+			else{
+				console.log(err);
+				res.redirect('/addRoutes');
+			}
+		});
+		//res.redirect('/addRoutes');
+			
+		}
+		//console.log(req.user.userBuses);
+		
 	});
 
 	app.get('/profile/:id', isLoggedIn, function(req, res) {

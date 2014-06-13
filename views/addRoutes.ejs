@@ -229,7 +229,26 @@
 					<h3>You don't have any bus routes added yet. You should add some immediately.</h3>
 				<%}%>
 			</div>
+
+      <% if(user.userBuses.length != 0){ %>
+      <div class="well">
+      <h3>Remove bus routes</h3>
+      <form action="/removeBuses" method="post">
+        <div class="form-group">
+        <div class="radio">
+        <% user.userBuses.forEach(function(entry){ %>
+          <input type="radio" name="bus" value="<%= entry %>"><%= entry %><br>
+          <% }); %>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button> 
+      </div>
+      </form>
+
+       
+      </div>
+       <%}%>
 		</div>
+
 
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
