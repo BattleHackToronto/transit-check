@@ -1,6 +1,7 @@
 var User = require('./models/user');
 var Bus = require('./models/bus');
 var request = require("request");
+var bcrypt   = require('bcrypt-nodejs');
 module.exports = function(app, passport) {
 
 	// =====================================
@@ -48,6 +49,21 @@ module.exports = function(app, passport) {
 			allAlerts: allAlerts
 		});
 		});
+	});
+
+	app.post('/newpassword', isLoggedIn, function(req, res){
+		var newpassword = req.body.newpassword;
+		console.log(newpassword);
+		console.log(bcrypt.hashSync(newpassword, bcrypt.genSaltSync(8), null));
+		User.findByIdAndUpdate(req.user._id, {password: bcrypt.hashSync(newpassword, bcrypt.genSaltSync(8), null)}, function(err){
+			if(!err){
+				res.redirect('/profileRedirect');
+			}
+			else{
+				console.log(err);
+				res.redirect('/profileRedirect');
+			}
+		})
 	});
 
 	app.get('/notify', function(req, res) {
