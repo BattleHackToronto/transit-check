@@ -1,7 +1,7 @@
 // load the things we need
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-
+var Bus = require('./alert');
 // define the schema for our user model
 var userSchema = mongoose.Schema({
     email : String,
@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     fullname : String,
     phone : String,
     userBuses : [{type: String}],
-    alerts : [{ alertName: String, likes: Number }]
+    alerts : [{ type: Bus }]
 });
 
 // methods ======================

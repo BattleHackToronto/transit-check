@@ -30,6 +30,19 @@ module.exports = function(app, passport) {
 		});
 	});
 
+/*	app.post('/addLikes', isLoggedIn, function(req, res){
+		req.user.alerts.likes++;
+		User.alert.findByIdAndUpdate(req.user.alert._id, {likes: req.user.alerts.likes}, function(err){
+			if(!err){
+				res.redirect('/allAlerts');
+			}
+			else{
+				console.log(err);
+				res.redirect('/allAlerts');
+			}
+		});
+	});*/
+
 	app.get('/allAlerts', isLoggedIn, function(req, res){
 		User.find({}).exec(function(err, userStar){
 			var allAlerts = [];
