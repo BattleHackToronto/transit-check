@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
 
 				item.alerts.forEach(function(alertItem){
 					//console.log(alertItem);
-					allAlerts.push({alert: alertItem, username: item.fullname, userid: item._id});
+					allAlerts.push({alert: alertItem.alertName, username: item.fullname, userid: item._id, likes: alertItem.likes});
 					console.log(allAlerts.length);
 				});
 			});
@@ -89,9 +89,9 @@ module.exports = function(app, passport) {
 	}));
 
 	app.post('/notifySubmit', isLoggedIn, function(req, res){
-		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert+". If you found it useful, like "+req.user.phone+"'s alert.";
+		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert+". If you found it useful, like "+req.user.fullname+"'s alert.";
 
-		    User.findByIdAndUpdate(req.user._id, {$push: {alerts: data}},function(err){
+		    User.findByIdAndUpdate(req.user._id, {$push: {alerts: {alertName: data, likes: 0}}},function(err){
       			if(err){
         			console.log(err);
         			res.redirect('/notifySubmit/'+data+'/'+req.body.route);

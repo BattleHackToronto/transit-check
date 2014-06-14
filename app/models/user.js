@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     fullname : String,
     phone : String,
     userBuses : [{type: String}],
-    alerts : [{type: String}]
+    alerts : [{ alertName: String, likes: Number }]
 });
 
 // methods ======================

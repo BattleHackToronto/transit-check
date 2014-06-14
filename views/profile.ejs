@@ -42,7 +42,8 @@
           <% if(user.alerts.length != 0){ %>
           	<ul style="padding-left: 20px">
             	<% user.alerts.forEach(function(alert){ %>
-            	<li><%= alert %></li>
+            	<li><%= alert.alertName %></li>
+              <li><%= alert.likes %></li>
             	<%  });%>
           	</ul>
           <% }else{ %>

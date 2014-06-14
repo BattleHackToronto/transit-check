@@ -66,6 +66,7 @@ module.exports = function(passport) {
                 newUser.email    = email;
                 newUser.password = newUser.generateHash(password);
                 newUser.phone = req.body.phone;
+                //newUser.alerts[0].likes = 0;
                 //newUser.userBuses = "Aditya";
                 //newUser.favBuses[0] = {};
                 //newUser.userBuses="Bayview";
