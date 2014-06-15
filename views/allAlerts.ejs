@@ -29,19 +29,19 @@
 <% include navbar %>
 <div class = "container">
 <div class="header"><h3>A list of all alerts</h3></div> 
-<form action="/addLikes" method="post">
 <% allAlerts.forEach(function(alerts){ %>
-  <% if(typeof(alerts.username) == typeof("string"))  {%>
+<form action="/addLikes/<%=alerts._id%>" method="post">
+  <% if(typeof("alerts.username") == typeof("string"))  {%>
     <div class = "col-sm-8 col-sm-offset-2  well well-lg" style="background-color:white">
       <div class = "page-header">
-        <p><%=alerts.alert%></p>
+        <p><%=alerts.alertName%></p>
         <p><button type="submit" class="btn btn-success">Likes:</button> <%= alerts.likes %></p>
       </div>
-      Created by <a href="/profile/<%=alerts.userid%>"><%=alerts.username%></a>
+      
     </div>
     <% } %>
-    <%  }); %>
 </form>
+    <%  }); %>
   </div>
 </body>
 </html>

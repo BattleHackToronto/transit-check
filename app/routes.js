@@ -31,41 +31,38 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	/*app.post('/addLikes/:alertid', isLoggedIn, function(req, res){
+	app.post('/addLikes/:id', isLoggedIn, function(req, res){
 		//req.user.alerts.likes++;
-		User.findById(req.user._id, function(err, doc){
+		//console.log(req.alert.alertName);
+		Alert.findByIdAndUpdate(req.params.id, {$inc:{likes:1}}).exec(function(err, alert){
 			if(!err){
-				doc.alerts.forEach(function(item){
-
-				});
+				console.log("chimpanzee");
+				console.log(alert);
+				console.log("pikachu");
 				res.redirect('/allAlerts');
 			}
 			else{
-				console.log(err);
-				res.redirect('/allAlerts');
-			}
-		});
-	});*/
+				res.send(err);
+			}}); 
+	});
 
 	app.get('/allAlerts', isLoggedIn, function(req, res){
 		Alert.find({}).exec(function(err, alertStar){
 			var allAlerts = [];
-			console.log("a");
+			console.log(alertStar);
 			alertStar.forEach(function(item){
 				console.log("b");
-
-				item.forEach(function(alertItem){
-					//console.log(alertItem);
-					allAlerts.push({alert: alertItem.alertName, likes: alertItem.likes});
+					allAlerts.push(item);
 					console.log(allAlerts.length);
 				});
+			console.log(allAlerts);
+			res.render('allAlerts.ejs',{
+				allAlerts: allAlerts
+				});
 			});
-					console.log("zombie");
-		console.log(allAlerts);
-		res.render('allAlerts.ejs',{
-			allAlerts: allAlerts
-		});
-		});
+					//console.log("zombie");
+		
+
 	});
 
 	app.post('/newpassword', isLoggedIn, function(req, res){
