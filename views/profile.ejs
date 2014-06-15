@@ -39,27 +39,7 @@
           <b>Phone: </b><%= user.phone%>
           <br>   
           <b>Alerts:</b>
-          <% if(user.alerts.length != 0){ %>
-          	<ul style="padding-left: 20px">
-            	<% user.alerts.forEach(function(alert){ %>
-            	<li><%= alert.alertName %></li>
-              <li><%= alert.likes %></li>
-            	<%  });%>
-          	</ul>
-          <% }else{ %>
-          	You haven't made any alerts yet<br>
-          <% } %>
-          <b>Bus Routes: </b>
-          <% if(user.userBuses.length != 0){ %>
-					<ul style="padding-left: 20px"> 
-						<% for(var i=0; i<user.userBuses.length; i++){ %>
-							<li><%= user.userBuses[i] %></li> 
-						<% } %>
-					</ul>
-				<%}else{%>
-					You don't have any bus routes added yet. You should add some immediately.<br>
-				<%}%>
-          </ul>
+          
         </div>
         
       </div>

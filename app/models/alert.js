@@ -4,7 +4,8 @@ var bcrypt   = require('bcrypt-nodejs');
 // define the schema for our user model
 var alertSchema = mongoose.Schema({
 	alertName: String, 
-	likes: Number 
+	likes: Number,
+	creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} 
 });
 
 // methods ======================

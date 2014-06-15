@@ -1,5 +1,6 @@
 var User = require('./models/user');
 var Bus = require('./models/bus');
+var Alert = require('./models/alert')
 var request = require("request");
 var bcrypt   = require('bcrypt-nodejs');
 module.exports = function(app, passport) {
@@ -30,10 +31,13 @@ module.exports = function(app, passport) {
 		});
 	});
 
-/*	app.post('/addLikes', isLoggedIn, function(req, res){
-		req.user.alerts.likes++;
-		User.alert.findByIdAndUpdate(req.user.alert._id, {likes: req.user.alerts.likes}, function(err){
+	/*app.post('/addLikes/:alertid', isLoggedIn, function(req, res){
+		//req.user.alerts.likes++;
+		User.findById(req.user._id, function(err, doc){
 			if(!err){
+				doc.alerts.forEach(function(item){
+
+				});
 				res.redirect('/allAlerts');
 			}
 			else{
@@ -44,15 +48,15 @@ module.exports = function(app, passport) {
 	});*/
 
 	app.get('/allAlerts', isLoggedIn, function(req, res){
-		User.find({}).exec(function(err, userStar){
+		Alert.find({}).exec(function(err, alertStar){
 			var allAlerts = [];
 			console.log("a");
-			userStar.forEach(function(item){
+			alertStar.forEach(function(item){
 				console.log("b");
 
-				item.alerts.forEach(function(alertItem){
+				item.forEach(function(alertItem){
 					//console.log(alertItem);
-					allAlerts.push({alert: alertItem.alertName, username: item.fullname, userid: item._id, likes: alertItem.likes});
+					allAlerts.push({alert: alertItem.alertName, likes: alertItem.likes});
 					console.log(allAlerts.length);
 				});
 			});
@@ -101,17 +105,34 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
+
+	//Creating an alert
 	app.post('/notifySubmit', isLoggedIn, function(req, res){
 		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert+". If you found it useful, like "+req.user.fullname+"'s alert.";
+			var alert = new Alert;
+			alert.alertName = data;
+			alert.likes = 0;
+			alert.creator = req.user;
 
-		    User.findByIdAndUpdate(req.user._id, {$push: {alerts: {alertName: data, likes: 0}}},function(err){
+			alert.save(function(err, alert){
+				if(!err){
+					res.redirect('/notifySubmit/'+data+'/'+req.body.route);
+				}
+				else{
+					res.send(err);
+				}
+			});
+
+
+
+		    /*User.findByIdAndUpdate(req.user._id, {$push: {alerts: {alertName: data, likes: 0}}},function(err){
       			if(err){
         			console.log(err);
         			res.redirect('/notifySubmit/'+data+'/'+req.body.route);
       			}else{
         			res.redirect('/notifySubmit/'+data+'/'+req.body.route);
       			}
-    		});    
+    		});    */
 	});
 
 	app.get('/notifySubmit/:data/:bus_route', isLoggedIn, function(req, res){
@@ -153,6 +174,8 @@ module.exports = function(app, passport) {
 		});
 		res.redirect('/profileRedirect');
 	});
+
+
 	app.get('/profileRedirectDuplicate', isLoggedIn, function(req,res){
 		res.redirect('/profile/'+req.query.userid);
 	});
