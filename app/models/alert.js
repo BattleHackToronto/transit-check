@@ -5,7 +5,9 @@ var bcrypt   = require('bcrypt-nodejs');
 var alertSchema = mongoose.Schema({
 	alertName: String, 
 	likes: Number,
-	creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} 
+	creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	dateCreated: {type: Date, default: Date.now},
+	userName: String 
 });
 
 // methods ======================

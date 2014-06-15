@@ -110,7 +110,8 @@ module.exports = function(app, passport) {
 			alert.alertName = data;
 			alert.likes = 0;
 			alert.creator = req.user;
-
+			alert.userName = req.user.fullname;
+			//alert.dateCreated = Date.now;
 			alert.save(function(err, alert){
 				if(!err){
 					res.redirect('/notifySubmit/'+data+'/'+req.body.route);

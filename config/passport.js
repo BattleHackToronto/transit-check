@@ -66,20 +66,6 @@ module.exports = function(passport) {
                 newUser.email    = email;
                 newUser.password = newUser.generateHash(password);
                 newUser.phone = req.body.phone;
-                //newUser.alerts[0].likes = 0;
-                //newUser.userBuses = "Aditya";
-                //newUser.favBuses[0] = {};
-                //newUser.userBuses="Bayview";
-                /*newUser.userBuses =  [{"busName" : "Bayview",
-                    "stop":[{"stopName":"union", "timeWeekly":["dgn","gjfg"], "timeSat":["fgn","dfhhd"], "timeSun":["dfd","dfhgdf"]}]
-                
-                }];*/
-                /*newUser.favBuses.push(.stop[0].stopName = "Eglinton";
-                newUser.favBuses[0].stop[0].timeWeekly = [1,2,3,4,5,6];
-                newUser.favBuses[0].stop[0].timeSat = [1,2,3,4,5,6];
-                newUser.favBuses[0].stop[0].timeSun = [1,2,3,4,5,6];*/  
-                //newUser.favBuses[0].stop[0].stopName = "Temp";
-				// save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
