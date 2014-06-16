@@ -81,8 +81,10 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/notify', function(req, res) {
+		console.log(req.alert);
 		res.render('notify.ejs',{
-			User: req.user
+			User: req.user,
+			alert: req.alert
 		});
 	});
 
@@ -97,7 +99,7 @@ module.exports = function(app, passport) {
 	// =====================================
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/notify', // redirect to the secure profile section
+		successRedirect : '/allAlerts', // redirect to the secure profile section
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
