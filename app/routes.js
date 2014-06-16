@@ -107,6 +107,9 @@ module.exports = function(app, passport) {
 	app.post('/notifySubmit', isLoggedIn, function(req, res){
 		var data = "Hey, you have a transit alert from "+req.user.fullname+" for the "+req.body.route+" - "+req.body.direction+" route: "+req.body.transitalert+". If you found it useful, like "+req.user.fullname+"'s alert.";
 			var alert = new Alert;
+			alert.alertRoute = req.body.route;
+			alert.alertDirection = req.body.direction;
+			alert.alertData = req.body.transitalert;
 			alert.alertName = data;
 			alert.likes = 0;
 			alert.creator = req.user;

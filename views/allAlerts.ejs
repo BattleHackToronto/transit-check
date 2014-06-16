@@ -31,17 +31,19 @@
 <div class="header"><h3>A list of all alerts</h3></div> 
 <% allAlerts.forEach(function(alerts){ %>
 <form action="/addLikes/<%=alerts._id%>" method="post">
-  <% if(typeof("alerts.username") == typeof("string"))  {%>
     <div class = "col-sm-8 col-sm-offset-2  well well-lg" style="background-color:white">
       <div class = "page-header">
-        <p><%=alerts.alertName%></p>
-        <p><%= alerts.userName %></p>
-        <p><%= alerts.dateCreated %></p>
-        <p><button type="submit" class="btn btn-success">Likes:</button> <%= alerts.likes %></p>
+        <p>
+          <b>Bus Name:</b> <%=alerts.alertRoute%><br>
+          <b>Direction:</b> <%=alerts.alertDirection%><br>
+          <b>Alert:</b> <%=alerts.alertData%><br>
+        </p>
+        <p>Created by <a href="/profile/<%=alerts.creator%>" target="_blank"><%= alerts.userName %></a></p>
+        <%=alerts.dateCreated.toISOString()%>
+        
       </div>
-      
+      <p><button type="submit" class="btn btn-success">Likes:</button> <%= alerts.likes %></p>
     </div>
-    <% } %>
 </form>
     <%  }); %>
   </div>

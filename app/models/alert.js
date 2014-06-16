@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 // define the schema for our user model
 var alertSchema = mongoose.Schema({
-	alertName: String, 
+	alertName: String,
+	alertRoute: String,
+	alertDirection: String,
+	alertData: String, 
 	likes: Number,
 	creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	dateCreated: {type: Date, default: Date.now},
