@@ -1,5 +1,5 @@
 <!-- views/profile.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
    <meta charset="utf-8">
@@ -20,10 +20,15 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="../js/jquery.timeago.js" type="text/javascript"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
-
+  <script>
+    jQuery(document).ready(function() {
+  jQuery("abbr.timeago").timeago();
+});
+  </script>
 </head>
 <body>
 <% include navbar %>
@@ -36,13 +41,12 @@
         <p>
           <b>Bus Name:</b> <%=alerts.alertRoute%><br>
           <b>Direction:</b> <%=alerts.alertDirection%><br>
-          <b>Alert:</b> <%=alerts.alertData%><br>
+          <b>Alert:</b> <%=alerts.alertData%>
+          
         </p>
-        <p>Created by <a href="/profile/<%=alerts.creator%>" target="_blank"><%= alerts.userName %></a></p>
-        <%=alerts.dateCreated.toISOString()%>
-        
       </div>
-      <p><button type="submit" class="btn btn-success">Likes:</button> <%= alerts.likes %></p>
+      <button type="submit" class="btn btn-success">Likes:</button> <%= alerts.likes %>
+      <div style="float: right">Created by <a href="/profile/<%=alerts.creator%>" target="_blank"><%= alerts.userName %></a> <abbr class="timeago" title="<%=alerts.dateCreated.toISOString()%>"></abbr></div>
     </div>
 </form>
     <%  }); %>
