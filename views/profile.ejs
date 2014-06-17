@@ -34,11 +34,14 @@
       <div class="panel-body">
 
         <div>
-          <b>Email: </b><%= user.email%>
-          <br>
-          <b>Phone: </b><%= user.phone%>
-          <br>   
-          <b>Alerts:</b>
+          <ul><b>Email: </b><%= user.email%>
+          <br></ul>
+          <ul><b>Phone: </b><%= user.phone%>
+          <br></ul>   
+          <b>Bus Routes:</b><ul style="padding: 20px;">
+          <% user.userBuses.forEach(function(bus){%>
+            <li><%= bus %></li>
+            <%})%></ul>
           
         </div>
         
