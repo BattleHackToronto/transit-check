@@ -259,10 +259,13 @@ module.exports = function(app, passport) {
 		request("http://www.kimonolabs.com/api/773xp64k?apikey=748efc029107db65254154caaec4a867", function(err, response, body){
 			User.findById(req.params.id).exec(function(err,doc){
 				if(!err){
+					console.log(req.user._id);
+					console.log(req.params.id);
 					res.render('profile.ejs', {
-					user : doc, // get the user out of session and pass to template
+					user : doc,
+					ownerid: req.user._id, // get the user out of session and pass to template
 					id : req.params.id,
-					BusArray : JSON.parse(body)});
+					BusArray : JSON.parse(body)})
 				}
 			});
 		});
