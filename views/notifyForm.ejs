@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <title>TransitCheck - A community driven solution to get you places.</title>
+    <title>Create alert</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -29,7 +29,6 @@
 <body>
 	<% include navbar%>
 	<div class="container">
-		<%if(req.alert.length > 0){%>
 		<h1>Fill the form to notify alerts</h1>
 		<form action="/notifySubmit" method="post">
 		<div class="well">
@@ -60,6 +59,5 @@
 		 	<button type="submit" class="btn btn-primary">Submit</button>
 		 </div>
 		</form>
-		<%}%>
 	</div>
 </body>
