@@ -253,7 +253,7 @@
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
 			<h3>Want to add some more bus routes?</h3>
-      <select>
+      <select name="busRoutes">
 				<% BusArray.results.collection1.forEach(function(entry){ %>
 					<option value="<%= entry.RouteName.text %>"><%= entry.RouteName.text %></option>
 					<% }); %>

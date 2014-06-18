@@ -147,6 +147,9 @@ module.exports = function(app, passport) {
 		//User.find({userBuses})
 	//Send an SMS text message
 		User.find({userBuses: req.params.bus_route}).exec(function(err, userStar){
+			if(userStar.length == 0){
+				res.alert("Thanks for your initiative. However, currently we do not have any other user subscribed to this route.");
+			}
 			userStar.forEach(function(item){
 				if(item.phone != req.user.phone){
 				console.log(item.phone);
@@ -211,13 +214,12 @@ module.exports = function(app, passport) {
 				}
 				return false;
 			};
-			BusArray.forEach(function(item){
-				if(req.body[item.RouteName.text] === "on"){
-					if(isBusAdded(item.RouteName.text) == false){
-						myArr.push(String(item.RouteName.text));
+			console.log(req.body.busRoutes);
+					if(isBusAdded(req.body.busRoutes) == false){
+						myArr.push(String(req.body.busRoutes));
 					}
-				}
-			});
+			
+
 		    User.findByIdAndUpdate(req.user._id, {$pushAll: {userBuses: myArr}},function(err){
       			if(err){
         			console.log(err);
