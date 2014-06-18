@@ -253,17 +253,12 @@
 		<div class="col-sm-6">
 			<form action="/submitBuses" method="post">
 			<h3>Want to add some more bus routes?</h3>
-			<div class="checkbox">
+      <select>
 				<% BusArray.results.collection1.forEach(function(entry){ %>
-				<label>
-					<input type="checkbox" name="<%= entry.RouteName.text %>"><%= entry.RouteName.text %><br>
+					<option value="<%= entry.RouteName.text %>"><%= entry.RouteName.text %></option>
 					<% }); %>
-				</label>
-			</div>
-			<div class="ui-widget">
-				<form action="/submitBuses" method="post">
-					<label for="tags">Tags: </label>
-  					<input id="tags">
+        </select>
+
   					<button type="submit" class="btn btn-primary">Submit</button>
   				</form>
 			</div>

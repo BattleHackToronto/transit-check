@@ -29,6 +29,7 @@
 <body>
 	<% include navbar%>
 	<div class="container" style="max-width: 70%;">
+	<% if(User.userBuses.length != 0){ %>
 		<h1>Fill the form to notify alerts</h1>
 		<form action="/notifySubmit" method="post">
 		<div class="jumbotron">
@@ -60,6 +61,10 @@
 		 	
 		 </div>
 		</form>
+		<%}else{%>
+			<h1>You do not have any buses added yet. Add the bus route you want to create an alert for...</h1>
+			<a href="/addRoutes"><button class="btn btn-primary">Add Bus Routes.</button></a>
+			<%}%>
 	</div>
 </body>
 </html>
