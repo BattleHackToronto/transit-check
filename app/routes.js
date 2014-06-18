@@ -147,9 +147,11 @@ module.exports = function(app, passport) {
 		//User.find({userBuses})
 	//Send an SMS text message
 		User.find({userBuses: req.params.bus_route}).exec(function(err, userStar){
-			if(userStar.length == 0){
-				res.alert("Thanks for your initiative. However, currently we do not have any other user subscribed to this route.");
+			console.log(userStar);
+			if(userStar.length == 1){
+				//res.send("Thanks for your initiative. However, currently we do not have any other user subscribed to this route.");
 			}
+			else{
 			userStar.forEach(function(item){
 				if(item.phone != req.user.phone){
 				console.log(item.phone);
@@ -176,7 +178,7 @@ module.exports = function(app, passport) {
 			});
 				}
 
-			});
+			});}
 		});
 		res.redirect('/profileRedirect');
 	});
