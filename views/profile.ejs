@@ -38,11 +38,12 @@
           <br></ul>
           <ul><b>Phone: </b><%= user.phone%>
           <br></ul>   
+          <% if(user.userBuses.length != 0){ %>
           <b>Bus Routes:</b><ul style="padding: 20px;">
           <% user.userBuses.forEach(function(bus){%>
             <li><%= bus %></li>
             <%})%></ul>
-          
+          <%}%>
         </div>
         
       </div>
